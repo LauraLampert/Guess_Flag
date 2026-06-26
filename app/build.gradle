@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity

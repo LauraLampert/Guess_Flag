@@ -1,6 +1,9 @@
 package com.example.guess_flag;
 
+import com.mobsandgeeks.saripaar.annotation.Length;
+
 public class RankingItem {
+    @Length(min = 1, max = 4)
     public String nome;
     public int pontuacao;
 
