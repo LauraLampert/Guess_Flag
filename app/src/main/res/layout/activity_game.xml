@@ -7,7 +7,7 @@
     android:background="#B6DEFB">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imagemBandeira"
         android:layout_width="340dp"
         android:layout_height="212dp"
         android:layout_marginStart="35dp"
@@ -19,7 +19,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tituloPergunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -27,10 +27,10 @@
         android:text="Digite seu palpite:"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imagemBandeira" />
 
     <EditText
-        android:id="@+id/idPalpite"
+        android:id="@+id/palpite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -42,7 +42,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloPergunta" />
 
     <Button
         android:id="@+id/btn_verifica"
@@ -56,5 +56,5 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idPalpite" />
+        app:layout_constraintTop_toBottomOf="@+id/palpite" />
 </androidx.constraintlayout.widget.ConstraintLayout>

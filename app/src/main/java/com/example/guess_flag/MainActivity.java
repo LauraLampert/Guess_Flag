@@ -1,6 +1,9 @@
 package com.example.guess_flag;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    Button btn_iniciar;
+    Button btn_ranking;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +29,12 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btn_iniciar = findViewById(R.id.btn_iniciar);
+        btn_ranking = findViewById(R.id.btn_ranking);
+
+
+        btn_iniciar.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), GameActivity.class)));
+        btn_ranking.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), RankingActivity.class)));
     }
 }
