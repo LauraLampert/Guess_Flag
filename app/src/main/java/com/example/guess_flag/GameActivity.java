@@ -1,5 +1,7 @@
 package com.example.guess_flag;
 
+import androidx.appcompat.app.AlertDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -20,6 +22,9 @@ public class GameActivity extends AppCompatActivity {
     private ImageView imagemBandeira;
     private TextView tituloPergunta;
     private EditText palpite;
+
+    private int tentativas = 0;
+    private boolean rankingSalvo = false;
 
     private ArrayList<Pergunta> perguntas;
     private int perguntaAtual = 0;
@@ -65,7 +70,10 @@ public class GameActivity extends AppCompatActivity {
 
             if (resposta.equalsIgnoreCase(respostaCorreta)) {
                 Toast.makeText(this, "Correto!", Toast.LENGTH_SHORT).show();
+                mostrarDialogoNome(this.tentativas);
+                this.tentativas = 0; // Reinicia as tentativas 
             } else {
+                this.tentativas++;
                 Toast.makeText(this, "Errado!", Toast.LENGTH_SHORT).show();
             }
 
@@ -101,5 +109,47 @@ public class GameActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(pergunta.getImagem())
                 .into(imagemBandeira);
+    }
+
+    private void mostrarDialogoNome(int pontuacao) {
+        if (rankingSalvo || isFinishing()) {
+            return;
+        }
+
+        EditText inputNome = new EditText(this);
+        inputNome.setHint("Nome do jogador");
+        inputNome.setSingleLine(true);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Fim de jogo")
+                .setMessage("Tentativas: " + pontuacao + "\nDigite seu nome ou deixe vazio.")
+                .setView(inputNome)
+                .setPositiveButton("Salvar", (dialog, which) -> {
+                    String nome = inputNome.getText().toString().trim();
+                    salvarRanking(nome, pontuacao);
+                })
+                .setNegativeButton("Não informar", (dialog, which) -> salvarRanking("", pontuacao))
+                .setOnCancelListener(dialog -> salvarRanking("", pontuacao))
+                .show();
+    }
+
+    private void salvarRanking(String nome, int pontuacao) {
+        if (rankingSalvo) {
+            return;
+        }
+
+        rankingSalvo = true;
+
+        if (nome.isEmpty()) {
+            nome = gerarNomeAleatorio();
+        }
+
+        RankingStorage.adicionar(this, new RankingItem(nome, pontuacao));
+        rankingSalvo = false;
+    }
+
+    private String gerarNomeAleatorio() {
+        String data = new SimpleDateFormat("HHmmssddMMyy", Locale.getDefault()).format(new Date());
+        return "GUESS" + data;
     }
 }
