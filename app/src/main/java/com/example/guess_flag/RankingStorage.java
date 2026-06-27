@@ -1,4 +1,4 @@
-package br.ifsul.ads;
+package com.example.guess_flag;
 
 import android.content.Context;
 import android.content.SharedPreferences;
