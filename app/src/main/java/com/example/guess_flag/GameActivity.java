@@ -10,6 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import com.example.guess_flag.RankingItem;
+import com.example.guess_flag.RankingStorage;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
