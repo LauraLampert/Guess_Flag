@@ -75,12 +75,10 @@ public class GameActivity extends AppCompatActivity {
             String respostaCorreta = perguntas.get(perguntaAtual)
                     .getAlternativas()[perguntas.get(perguntaAtual).getAlternativaCorreta()];
 
+            this.tentativas++;
             if (resposta.equalsIgnoreCase(respostaCorreta)) {
                 Toast.makeText(this, "Correto!", Toast.LENGTH_SHORT).show();
-                mostrarDialogoNome(this.tentativas);
-                this.tentativas = 0; // Reinicia as tentativas 
             } else {
-                this.tentativas++;
                 Toast.makeText(this, "Errado!", Toast.LENGTH_SHORT).show();
             }
 
@@ -93,7 +91,7 @@ public class GameActivity extends AppCompatActivity {
                 loadQuestion(perguntas.get(perguntaAtual));
 
             } else {
-
+                mostrarDialogoNome(this.tentativas);
                 tituloPergunta.setText("Fim do jogo!");
 
                 new android.os.Handler().postDelayed(() -> {
@@ -103,7 +101,7 @@ public class GameActivity extends AppCompatActivity {
                     finish(); // Fecha a GameActivity
 
                 }, 1500);
-
+                this.tentativas = 0;
             }
 
         });
